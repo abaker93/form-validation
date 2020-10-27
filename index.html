@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <h1>Basic Form Validation</h1>
+        <p>Fill out the form and click the button to get a message. It doesn't get submitted anywhere, it just shows basic client-side form validation.</p>
+    </header>
+    <main>
+        <form id="form">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" required />
+            <label for="email">Email</label>
+            <input type="email" id="email" required />
+            <span id="email-error"></span>
+            <label for="country">Country</label>
+            <input type="text" id="country" required />
+            <label for="zip">Zip Code</label>
+            <input type="number" id="zip" minlength="5" maxlength="5" required />
+            <label for="password">Password</label>
+            <input type="password" id="password" required minlength="6" />
+            <label for="password-confirm">Password Confirmation</label>
+            <input type="password" id="password-confirm" required />
+            <button class="btn">Submit form</button>
+        </form>
+    </main>
+    <footer>&copy; 2020 <a href="http://annabaker.design" target="_blank">Anna Baker Design</a></footer>
+
+    <div id="form-submit-modal" class="modal">
+        <button class="btn close-btn">
+            <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+        <header>Yay! You filled out the form and passed all the validation!</header>
+        <img src="./img/waving-hand.svg" />
+        <button class="btn">High Five!</button>
+    </div>
+
+<script src="./main.js"></script>
+</body>
+</html>
