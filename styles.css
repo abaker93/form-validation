@@ -1,5 +1,22 @@
-body header {
-  color: blue;
+body {
+  background-color: #83EAF1;
+  color: #342E37;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-items: center;
+}
+
+form {
+  background-color: #FFFFFF;
+  width: 50%;
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
 svg {

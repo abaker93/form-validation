@@ -6,26 +6,44 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <header>
-        <h1>Basic Form Validation</h1>
-        <p>Fill out the form and click the button to get a message. It doesn't get submitted anywhere, it just shows basic client-side form validation.</p>
-    </header>
+    
     <main>
-        <form id="form">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" required />
-            <label for="email">Email</label>
-            <input type="email" id="email" required />
-            <span id="email-error"></span>
-            <label for="country">Country</label>
-            <input type="text" id="country" required />
-            <label for="zip">Zip Code</label>
-            <input type="number" id="zip" minlength="5" maxlength="5" required />
-            <label for="password">Password</label>
-            <input type="password" id="password" required minlength="6" />
-            <label for="password-confirm">Password Confirmation</label>
-            <input type="password" id="password-confirm" required />
-            <button class="btn">Submit form</button>
+        <form id="form" novalidate>
+            <header>
+                <h1>Basic Form Validation</h1>
+                <p>Fill out the form and click the button to get a message. It doesn't get submitted anywhere, it just shows basic client-side form validation.</p>
+            </header>
+            <fieldset>
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+                <span id="name-error" class="error" aria-live="polite"></span>
+            </fieldset>
+            <fieldset>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required minlength="8">
+                <span id="email-error" class="error" aria-live="polite"></span>
+            </fieldset>
+            <fieldset>
+                <label for="country">Country</label>
+                <input type="text" id="country" name="country" required>
+                <span id="country-error" class="error" aria-live="polite"></span>
+            </fieldset>
+            <fieldset>
+                <label for="zip">Zip Code</label>
+                <input type="text" id="zip" name="zip" required pattern="[0-9]{5}">
+                <span id="zip-error" class="error" aria-live="polite"></span>
+            </fieldset>
+            <fieldset>
+                <label for="pass">Password</label>
+                <input type="password" id="pass" name="pass" required pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" minlength="8">
+                <span id="pass-error" class="error" aria-live="polite"></span>
+            </fieldset>
+            <fieldset>
+                <label for="pass-confirm">Confirm Password</label>
+                <input type="password" id="pass-confirm" name="pass-confirm" required minlength="8">
+                <span id="pass-confirm-error" class="error" aria-live="polite"></span>
+            </fieldset>
+            <button>Submit</button>
         </form>
     </main>
     <footer>&copy; 2020 <a href="http://annabaker.design" target="_blank">Anna Baker Design</a></footer>

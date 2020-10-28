@@ -1,5 +1,30 @@
+$ltblue: #83EAF1;
+$blue: #3ABCFF;
+$green: #27E492;
+$red: #FF5350;
+$black: #342E37;
+$gray: #DDDDDD;
+$white: #FFFFFF;
+
 body {
-    header { color: blue; }
+    background-color: $ltblue;
+    color: $black;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    justify-items: center;
+}
+
+form {
+    background-color: $white;
+    width: 50%;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.1);
 }
 
 svg {
