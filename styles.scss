@@ -6,27 +6,270 @@ $black: #342E37;
 $gray: #DDDDDD;
 $white: #FFFFFF;
 
+* { box-sizing: border-box;}
+
 body {
-    background-color: $ltblue;
-    color: $black;
+	background-color: $ltblue;
+	color: $black;
+	font-family: atten-new, sans-serif;
+	font-weight: 300;
+	font-style: normal;
+	font-size: 15px;
+	line-height: 1.4;
+	letter-spacing: 0.03em;
 }
 
-main {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    justify-items: center;
+h1, h2, h3, h4, h5, h6 {
+	font-family: span, serif;
+	font-weight: 600;
+	font-style: normal;
+	letter-spacing: 0;
+	line-height: 1.2;
 }
 
-form {
-    background-color: $white;
-    width: 50%;
-    max-width: 600px;
-    padding: 30px;
-    border-radius: 4px;
-    box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.1);
+h1 {
+	font-size: 50px;
+	margin-bottom: 10px;
+}
+
+button {
+	border: none;
+	background: none;
+	padding: 0;
+	margin: 0;
+	background-color: $blue;
+	color: $white;
+	padding: 10px 40px;
+	font-family: atten-new, sans-serif;
+	font-weight: 700;
+	font-style: normal;
+	font-size: 20px;
+	line-height: 1.4;
+	letter-spacing: 0.03em;
+	cursor: pointer;
+	
+	&:hover { background-color: #319DD5; }
+
+	&:active { background-color: $ltblue; }
+
+	&.close-btn {
+		background: none;
+		padding: 0;
+		position: absolute;
+		top: 30px;
+		right: 30px;
+	}
+
+	&.disabled {
+		background-color: $gray;
+		cursor: default;
+	}
+
 }
 
 svg {
-    height: 20px;
+	height: 30px;
+}
+
+main {
+	width: 100%;
+	height: 100%;
+	display: grid;
+	justify-items: center;
+	align-items: center;
+
+	header { margin-bottom: 50px; }
+
+}
+
+#form-container {
+	background-color: $white;
+	width: 600px;
+	margin: 50px;
+	padding: 30px;
+	border-radius: 4px;
+	box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.1);
+}
+
+form {
+	justify-self: center;
+	max-width: max-content;
+	margin: 0 auto;
+
+	fieldset {
+		margin-bottom: 20px;
+		position: relative;
+
+		label {
+			font-family: atten-new, sans-serif;
+			font-weight: 700;
+			font-style: normal;
+			color: $blue;
+			display: block;
+			margin-bottom: 7px;
+		}
+
+		input {
+			color: $black;
+			font-family: atten-new, sans-serif;
+			font-weight: 300;
+			font-style: normal;
+			font-size: 17px;
+			line-height: 1.4;
+			letter-spacing: 0.03em;
+			border: none;
+			background: none;
+			border-bottom: 1px solid $gray;
+			padding: 0 0 7px 0;
+			transition: border linear 0.2s,
+						padding linear 0.2s;
+			min-width: 300px;
+
+			&:focus {
+				padding-bottom: 6px;
+				border-bottom: 3px solid #3ABCFF;
+			}
+
+		}
+
+		span.valid-input {
+			position: relative;
+
+			input {
+				padding-bottom: 6px;
+				border-bottom: 3px solid $green;
+			}
+			
+			&:after {
+				content: '';
+				height: 20px;
+				width: 20px;
+				display: inline-block;
+				position: absolute;
+				top: 0;
+				right: 0;
+				background-image: url('./img/check.svg');
+				background-size: 100% 100%;
+			}
+
+		}
+		
+		span.error-input {
+			position: relative;
+
+			input {
+				padding-bottom: 6px;
+				border-bottom: 3px solid $red;
+			}
+
+			&:after {
+				content: '';
+				height: 20px;
+				width: 20px;
+				display: inline-block;
+				position: absolute;
+				top: 0;
+				right: 0;
+				background-image: url('./img/error.svg');
+				background-size: 100% 100%;
+			}
+
+		}
+
+		span.error {
+			position: absolute;
+			left: 100%;
+			top: 20px;
+			padding-left: 20px;
+			width: 100px;
+			font-size: 12px;
+			color: $red;
+
+			&#pass-error {
+				top: 8px;
+
+				li {
+					list-style: none;
+					margin-bottom: 11px;
+					line-height: 1.2;
+					display: none;
+				}
+
+				li:nth-child(1), li:nth-child(2) {
+					display: block;
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+.modal {
+	display: none;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0,0,0,0.1);
+	position: absolute;
+	top: 0;
+	left: 0;
+	justify-content: center;
+	align-content: center;
+
+	&.show { display: grid; }
+
+	.modal-container {
+		background-color: $white;
+		width: 500px;
+		margin: 50px;
+		padding: 30px;
+		border-radius: 4px;
+		box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.1);
+		position: relative;
+		text-align: center;
+
+		header {
+			text-align: left;
+			padding-right: 50px;
+		}
+
+		img {
+			display: block;
+			padding: 50px;
+			margin: 0 auto;
+		}
+		
+		.animation {
+			animation: high-five 0.4s cubic-bezier(0.75, 0.820, 0.165, 1.000) 0.2s both;	
+		}
+
+	}
+
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	padding: 20px;
+	background-color: rgba(255,255,255,0.3);
+
+	a {
+		color: $black;
+		font-weight: 700;
+		transition: all ease-in-out 0.2s;
+
+		&:hover { color: $red; }
+
+	}
+}
+
+@keyframes high-five {
+	0% { transform: scale(0.5); }
+	70% { transform: scale(1.3); }
+	100% { transform: scale(1); }
 }

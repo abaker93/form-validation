@@ -4,57 +4,65 @@
     <title>Form Validation</title>
     <link rel="stylesheet" href="./reset.css">
     <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://use.typekit.net/epf1ima.css">
 </head>
 <body>
-    
     <main>
-        <form id="form" novalidate>
+        <div id="form-container">
             <header>
                 <h1>Basic Form Validation</h1>
-                <p>Fill out the form and click the button to get a message. It doesn't get submitted anywhere, it just shows basic client-side form validation.</p>
+                <p>Fill out the form and click the button to get a message.</p>
+                <p>It doesn't get submitted anywhere, it just shows off client-side form validation.</p>
             </header>
-            <fieldset>
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required>
-                <span id="name-error" class="error" aria-live="polite"></span>
-            </fieldset>
-            <fieldset>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required minlength="8">
-                <span id="email-error" class="error" aria-live="polite"></span>
-            </fieldset>
-            <fieldset>
-                <label for="country">Country</label>
-                <input type="text" id="country" name="country" required>
-                <span id="country-error" class="error" aria-live="polite"></span>
-            </fieldset>
-            <fieldset>
-                <label for="zip">Zip Code</label>
-                <input type="text" id="zip" name="zip" required pattern="[0-9]{5}">
-                <span id="zip-error" class="error" aria-live="polite"></span>
-            </fieldset>
-            <fieldset>
-                <label for="pass">Password</label>
-                <input type="password" id="pass" name="pass" required pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" minlength="8">
-                <span id="pass-error" class="error" aria-live="polite"></span>
-            </fieldset>
-            <fieldset>
-                <label for="pass-confirm">Confirm Password</label>
-                <input type="password" id="pass-confirm" name="pass-confirm" required minlength="8">
-                <span id="pass-confirm-error" class="error" aria-live="polite"></span>
-            </fieldset>
-            <button>Submit</button>
-        </form>
+            <form id="form" novalidate>
+                <fieldset>
+                    <label for="name">Name</label>
+                    <span><input type="text" id="name" name="name" placeholder="John Smith" required></span>
+                    <span id="name-error" class="error" aria-live="polite"></span>
+                </fieldset>
+                <fieldset>
+                    <label for="email">Email</label>
+                    <span><input type="email" id="email" name="email" placeholder="email@website.com" required minlength="8"></span>
+                    <span id="email-error" class="error" aria-live="polite"></span>
+                </fieldset>
+                <fieldset>
+                    <label for="country">Country</label>
+                    <span><input type="text" id="country" name="country" placeholder="USA" required></span>
+                    <span id="country-error" class="error" aria-live="polite"></span>
+                </fieldset>
+                <fieldset>
+                    <label for="zip">Zip Code</label>
+                    <span><input type="text" id="zip" name="zip" placeholder="12345" required pattern="[0-9]{5}"></span>
+                    <span id="zip-error" class="error" aria-live="polite"></span>
+                </fieldset>
+                <fieldset>
+                    <label for="pass">Password</label>
+                    <span><input type="password" id="pass" name="pass" placeholder="Password" required pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" minlength="8"></span>
+                    <span id="pass-error" class="error" aria-live="polite"></span>
+                </fieldset>
+                <fieldset>
+                    <label for="pass-confirm">Confirm Password</label>
+                    <span><input type="password" id="pass-confirm" name="pass-confirm" placeholder="Confirm Password"required minlength="8"></span>
+                    <span id="pass-confirm-error" class="error" aria-live="polite"></span>
+                </fieldset>
+                <button id="form-submit" type="button">Submit</button>
+            </form>
+        </div>
     </main>
     <footer>&copy; 2020 <a href="http://annabaker.design" target="_blank">Anna Baker Design</a></footer>
 
     <div id="form-submit-modal" class="modal">
-        <button class="btn close-btn">
-            <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
-        </button>
-        <header>Yay! You filled out the form and passed all the validation!</header>
-        <img src="./img/waving-hand.svg" />
-        <button class="btn">High Five!</button>
+        <div class="modal-container">
+            <button id="modal-close-btn" class="btn close-btn">
+                <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+            </button>
+            <header>
+                <h1>Congrats <span id="user-name"></span>!</h1>
+                <p>You filled out the form and passed all the validation!</p>
+            </header>
+            <img id="high-five-img" src="./img/waving-hand.svg" />
+            <button id="high-five-btn" class="btn" type="button" onclick="highFiveAni()">High Five!</button>
+        </div>
     </div>
 
 <script src="./main.js"></script>

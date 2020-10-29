@@ -1,4 +1,6 @@
-const form = document.getElementById('form')
+const formSubmit = document.getElementById('form-submit')
+const userName = document.getElementById('user-name')
+const modal = document.getElementById('form-submit-modal')
 
 const name = document.getElementById('name')
 const email = document.getElementById('email')
@@ -14,89 +16,117 @@ const zipError = document.getElementById('zip-error')
 const passError = document.getElementById('pass-error')
 const passConfirmError = document.getElementById('pass-confirm-error')
 
-name.addEventListener('input', event => {
+name.addEventListener('input', () => {
+    userName.innerText = name.value
+
     if (name.validity.valid) {
         nameError.innerHTML = ''
         nameError.className = 'error'
+        name.parentElement.className = 'valid-input'
     } else {
         showNameError()
+        name.parentElement.className = 'error-input'
     }
 })
 
-email.addEventListener('input', event => {
+email.addEventListener('input', () => {
     if (email.validity.valid) {
         emailError.innerHTML = ''
         emailError.className = 'error'
+        email.parentElement.className = 'valid-input'
     } else {
         showEmailError()
+        email.parentElement.className = 'error-input'
     }
 })
 
-country.addEventListener('input', event => {
+country.addEventListener('input', () => {
     if (country.validity.valid) {
         countryError.innerHTML = ''
         countryError.className = 'error'
+        country.parentElement.className = 'valid-input'
     } else {
         showCountryError()
+        country.parentElement.className = 'error-input'
     }
 })
 
-zip.addEventListener('input', event => {
+zip.addEventListener('input', () => {
     if (zip.validity.valid) {
         zipError.innerHTML = ''
         zipError.className = 'error'
+        zip.parentElement.className = 'valid-input'
     } else {
         showZipError()
+        zip.parentElement.className = 'error-input'
     }
 })
 
-pass.addEventListener('input', event => {
+pass.addEventListener('input', () => {
     if (pass.validity.valid) {
         passError.innerHTML = ''
         passError.className = 'error'
+        pass.parentElement.className = 'valid-input'
     } else {
         showPassError()
+        pass.parentElement.className = 'error-input'
     }
-})
 
-passConfirm.addEventListener('input', event => {
     if (passConfirm.value === pass.value) {
         passConfirmError.innerHTML = ''
         passConfirmError.className = 'error'
+        passConfirm.parentElement.className = 'valid-input'
     } else {
         showPassConfirmError()
+        passConfirm.parentElement.className = 'error-input'
     }
 })
 
-form.addEventListener('submit', event => {
+passConfirm.addEventListener('input', () => {
+    if (passConfirm.value === pass.value) {
+        passConfirmError.innerHTML = ''
+        passConfirmError.className = 'error'
+        passConfirm.parentElement.className = 'valid-input'
+    } else {
+        showPassConfirmError()
+        passConfirm.parentElement.className = 'error-input'
+    }
+})
+
+formSubmit.addEventListener('click', () => {
     if (!name.validity.valid) {
         showNameError()
-        event.preventDefault()
+        name.parentElement.className = 'error-input'
     }
 
     if (!email.validity.valid) {
         showEmailError()
-        event.preventDefault()
+        email.parentElement.className = 'error-input'
     }
 
     if (!country.validity.valid) {
         showCountryError()
-        event.preventDefault()
+        country.parentElement.className = 'error-input'
     }
 
     if (!zip.validity.valid) {
         showZipError()
-        event.preventDefault()
+        zip.parentElement.className = 'error-input'
     }
 
     if (!pass.validity.valid) {
         showPassError()
-        event.preventDefault()
+        pass.parentElement.className = 'error-input'
     }
 
     if (!passConfirm.validity.valid) {
         showPassConfirmError()
-        event.preventDefault()
+        passConfirm.parentElement.className = 'error-input'
+    }
+
+    if (name.validity.valid && email.validity.valid && country.validity.valid && zip.validity.valid && pass.validity.valid && passConfirm.validity.valid) {
+        console.log('it worked!')
+        modal.classList.add('show')
     }
 })
 
@@ -195,3 +225,22 @@ const showPassConfirmError = () => {
         passConfirmError.className = 'error active'
     }
 }
+
+const highFiveAni = () => {
+    const img = document.getElementById('high-five-img')
+    const btn = document.getElementById('high-five-btn')
+
+    img.classList.add('animation')
+    btn.classList.add('disabled')
+
+    const removeClass = () => {
+        img.classList.remove('animation')
+        btn.classList.remove('disabled')
+    }
+    
+    setTimeout(removeClass, 1000)
+}
+
+document.getElementById('modal-close-btn').addEventListener('click', () => {
+    modal.classList.remove('show')
+})
